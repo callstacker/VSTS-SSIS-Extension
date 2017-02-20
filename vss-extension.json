@@ -1,0 +1,80 @@
+{
+    "manifestVersion": 1,
+    "id": "VSTS-SSIS",
+    "version": "0.2.0",
+    "name": "SSIS Build & Deploy",
+    "scopes": [ "vso.work", "vso.work_write" ],
+    "description": "Extension with Continuous Integration support for SSIS",
+    "baseUri": "https://github.com/ToxicGlobe/VSTS-SSIS-Extension",
+    "publisher": "TG",
+    "public": false,
+    "icons": {
+        "default": "img/logo.png"
+    },
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "categories": [
+        "Build and release"
+    ],
+    "tags": [
+        "SQL",
+        "SSIS",
+        "Integration Services",
+        "Denenv"
+    ],
+    "screenshots": [
+        {
+            "path": "docs/Screenshots/BuildSSIS-Task-Build.png"
+        }
+    ],
+    "links": {
+        "home": {
+            "uri": "https://github.com/ToxicGlobe/VSTS-SSIS-Extension"
+        },
+        "getstarted": {
+            "uri": "https://github.com/ToxicGlobe/VSTS-SSIS-Extension/wiki"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "uri": "https://github.com/ToxicGlobe/VSTS-SSIS-Extension"
+    },
+    "branding": {
+        "color": "#f6f7fb",
+        "theme": "light"
+    },
+    "content": {
+        "details": {
+            "path": "README.md"
+        }
+    },
+    "files": [
+        {
+            "path": "BuildSSISTask"
+        },
+        {
+            "path": "DeploySSISTask"
+        },
+        {
+            "path": "node_modules/vss-web-extension-sdk/lib",
+            "addressable": true,
+            "packagePath": "lib"
+        }
+
+    ],
+    "contributions": [
+        {
+            "id": "BuildSSIS-task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "type": "ms.vss-distributed-task.task",
+            "properties": {
+                "name": "BuildSSISTask"
+            }
+        }
+    ]
+}
