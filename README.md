@@ -13,15 +13,15 @@
 ### How to Setup build
 > <https://github.com/ToxicGlobe/VSTS-SSIS-Extension/wiki/How-to-Setup-build>
 
-## Latest releases
-> * Supported version VS2015, VS2015
-
 ## Contribute
 > * Contributions are welcome!
 > * Submit bugs and help us verify fixes
 > * Submit pull requests for bug fixes and features and discuss existing proposals
 
 > [file an issue](https://github.com/ToxicGlobe/VSTS-SSIS-Extension/issues)
+
+## Latest releases
+> * Supported version VS2013, VS2015
 
 ## TODO:
 > * Implement custom path for Devenv.com utility
