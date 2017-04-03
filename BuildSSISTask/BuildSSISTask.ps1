@@ -57,6 +57,53 @@ if($buildProject)
 	}
 }
 
+#Ensure that a .dtproj.user file exists for each project we are building
+#(this is necessary so we can set the InteractiveMode option to false)
+
+Write-Host ("Checking for user options file in $workingFolder")
+
+Get-ChildItem $workingFolder -Recurse -Filter '*.dtproj' | ForEach-Object {
+    
+    $userOptionsPath = "$($_.FullName).user"
+
+    #For each project file, test if a corresponding .user file exists
+    If(!(Test-Path $userOptionsPath)){
+
+        #If not, create it
+@"
+<?xml version="1.0" encoding="utf-8"?>
+<DataTransformationsUserConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Configurations>
+    <Configuration>
+      <Name>$solnConfigName</Name>
+      <Options>
+      </Options>
+    </Configuration>
+  </Configurations>
+</DataTransformationsUserConfiguration>
+"@ | out-file $userOptionsPath
+
+    Write-Host ("Created $userOptionsPath")
+
+    }
+
+    #File exists; write the option
+    $xml = [xml](Get-Content $userOptionsPath)
+    $xml | ForEach-Object {
+        $_.DataTransformationsUserConfiguration.Configurations.Configuration | ForEach-Object {
+            $options = $_.SelectSingleNode("Options")
+            if ($options.InteractiveMode -eq $null) {
+                $newOption = $xml.CreateElement("InteractiveMode") 
+                $options.AppendChild($newOption)
+                Write-Host ("Added option: InteractiveMode")
+            }
+            $options.InteractiveMode = [string]"false"
+        }
+    }
+    $xml.Save($userOptionsPath)
+    Write-Host ("Set InteractiveMode $false for $userOptionsPath")
+}
+
 #Create Argument List
 $argumentList = ("`"$solnPath`" /$solnCmdSwitch $solnConfigName")
 
@@ -71,7 +118,7 @@ Write-host ("===================================================================
 
 try	{
 	#build Solution / Project
-	Start-Process $compiler $argumentList -NoNewWindow -PassThru -Wait -Verbose
+	Start-Process $compiler $argumentList -NoNewWindow -PassThru -Wait -Verbose -RedirectStandardError $true
 } catch {
 	Write-Host ("##vso[task.logissue type=error;]Task_InternalError "+ $_.Exception.Message)
 } finally {
