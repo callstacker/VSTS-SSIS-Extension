@@ -126,6 +126,7 @@ try	{
 	if (!$outputFile)
 	{
 		Write-Host "##vso[task.logissue type=error;]Test Output: No .ispac file found in $workingFolder!"
+        Write-Host "##vso[task.complete result=Failed;]There was an error"
 	}
 	Trace-VstsLeavingInvocation $MyInvocation
 }
