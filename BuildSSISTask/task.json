@@ -1,6 +1,6 @@
 ﻿{
     "id": "1cbf64a9-c6d0-431b-9d98-8f5d509b5e09",
-    "name": "Build SSIS",
+    "name": "BuildSsis",
     "friendlyName": "SSIS Build",
     "description": "Build SQL Server Integration Services Project into .ispac file using legacy Package Deployment Model",
     "helpMarkDown": "[More Information](https://marketplace.visualstudio.com/items?itemName=TG.VSTS-SSIS)",
@@ -10,7 +10,8 @@
         "Release"
     ],
     "runsOn": [
-        "Agent"
+        "Agent",
+        "DeploymentGroup"
     ],
     "author": "ToxicGlobe",
     "version": {
@@ -18,8 +19,7 @@
         "Minor": 2,
         "Patch": 0
     },
-    "demands": [
-    ],
+    "demands": [],
     "minimumAgentVersion": "1.95.0",
     "groups": [
         {
