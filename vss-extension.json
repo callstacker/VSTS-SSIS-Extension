@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "VSTS-SSIS",
-    "version": "0.3.0",
+    "version": "0.3.349",
     "name": "SSIS Build & Deploy",
     "scopes": [ "vso.work", "vso.work_write" ],
     "description": "Extension with Continuous Integration support for SSIS",

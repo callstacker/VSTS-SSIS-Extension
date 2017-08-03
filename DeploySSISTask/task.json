@@ -6,7 +6,6 @@
     "helpMarkDown": "[More Information](https://marketplace.visualstudio.com/items?itemName=TG.VSTS-SSIS)",
     "category": "Deploy",
     "visibility": [
-        "Preview",
         "Build",
         "Release"
     ],
