@@ -1,7 +1,7 @@
 {
     "manifestVersion": 1,
     "id": "VSTS-SSIS",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "name": "SSIS Build & Deploy",
     "scopes": [ "vso.work", "vso.work_write" ],
     "description": "Extension with Continuous Integration support for SSIS",
@@ -74,6 +74,16 @@
             "type": "ms.vss-distributed-task.task",
             "properties": {
                 "name": "BuildSSISTask"
+            }
+        },
+        {
+            "id": "DeploySSIS-task",
+            "targets": [
+                "ms.vss-distributed-task.tasks"
+            ],
+            "type": "ms.vss-distributed-task.task",
+            "properties": {
+                "name": "DeploySSISTask"
             }
         }
     ]

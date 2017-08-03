@@ -31,8 +31,8 @@ Write-host ("===================================================================
 #Format/Initialise Values
 switch ($devenvVersion) 
 	{ 
-		12 {$compiler = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Devenv.exe"} 
-		14 {$compiler = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Devenv.exe"}
+		12 {$compiler = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\Devenv.com"} 
+		14 {$compiler = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\Devenv.com"}
 	}
 Write-Host ("Denenv.com version: $compiler")
 Write-Host ("Working Directory: $workingFolder")
