@@ -73,23 +73,24 @@ try {
     # Set project parameters
     Write-Host (Get-VstsLocString -Key SetParameters)
     $project = $folder.Projects[$ProjectName]
-    $parameterLines = $ProjectParameters -split '[\r\n]'
-    foreach ($parameterLine in $parameterLines) {
-        $parameter = $parameterLine -split '='
+    if ($project.Parameters.Count -gt 0) {
+    	$parameterLines = $ProjectParameters -split '[\r\n]'
+    	foreach ($parameterLine in $parameterLines) {
+        	$parameter = $parameterLine -split '='
 
-        if ($project.Parameters.Contains($parameter[0])) {
-            Write-Host (Get-VstsLocString -Key SettingParameter0ValueTo1 -ArgumentList $parameter[0],$parameter[1])
+        	if ($project.Parameters.Contains($parameter[0])) {
+            	Write-Host (Get-VstsLocString -Key SettingParameter0ValueTo1 -ArgumentList $parameter[0],$parameter[1])
 
-            $project.Parameters[$parameter[0]].Set(
-                $project.Parameters[$parameter[0]].ValueType,
-                $parameter[1]
-            )
-        }
-        else {
-            Write-Warning (Get-VstsLocString -Key Parameter0NotValid -ArgumentList $parameter[0])
-        }
+            	$project.Parameters[$parameter[0]].Set(
+                	$project.Parameters[$parameter[0]].ValueType,
+                	$parameter[1]
+            	)
+        	}
+        	else {
+	            Write-Warning (Get-VstsLocString -Key Parameter0NotValid -ArgumentList $parameter[0])
+	        }
+	    }
     }
-    
     $project.Alter()
 
 } catch {
