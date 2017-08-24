@@ -69,7 +69,7 @@
         },
         {
             "name": "ProjectParameters",
-            "type": "multiline",
+            "type": "multiLine",
             "label": "Project Parameters",
             "defaultValue": "",
             "required": false,
