@@ -23,6 +23,10 @@
 > [file an issue](https://github.com/ToxicGlobe/VSTS-SSIS-Extension/issues)
 
 ## Latest Updates
+> 0.3.350
+>
+> Bug fixes in DepoySSISTask by avdbrink
+
 > 0.3.346
 >
 > Implementation for the DeploySSISTask, enabling the task to be used in a deployment pipeline to deploy SSIS projects. Thanks to https://github.com/sschutten !!
@@ -43,7 +47,7 @@
 
 > 0.1.0
 >
-> Supported version VS2013, VS2015
+> Supported version VS2013, VS2015, VS2017, VSO
 
 ## TODO:
 > * Implement custom path for Devenv.com utility
