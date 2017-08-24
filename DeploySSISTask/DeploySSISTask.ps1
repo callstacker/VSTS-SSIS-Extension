@@ -73,7 +73,7 @@ try {
     # Set project parameters
     Write-Host (Get-VstsLocString -Key SetParameters)
     $project = $folder.Projects[$ProjectName]
-    if ($project.Parameters.Count -neq 0) {
+    if ($project.Parameters.Count -gt 0) {
     	$parameterLines = $ProjectParameters -split '[\r\n]'
     	foreach ($parameterLine in $parameterLines) {
         	$parameter = $parameterLine -split '='
