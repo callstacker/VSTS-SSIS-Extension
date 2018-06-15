@@ -77,18 +77,24 @@ try {
     	$parameterLines = $ProjectParameters -split '[\r\n]'
     	foreach ($parameterLine in $parameterLines) {
         	$parameter = $parameterLine -split '='
+		
+		# Test that we've extracted a non-empty parameter name
+		if ($parameter -ne $null){
+			
+			# Set the parameter to the specified value if it exists in project
+			if ($project.Parameters.Contains($parameter[0])) {
+			Write-Host (Get-VstsLocString -Key SettingParameter0ValueTo1 -ArgumentList $parameter[0],$parameter[1])
 
-        	if ($project.Parameters.Contains($parameter[0])) {
-            	Write-Host (Get-VstsLocString -Key SettingParameter0ValueTo1 -ArgumentList $parameter[0],$parameter[1])
-
-            	$project.Parameters[$parameter[0]].Set(
-                	$project.Parameters[$parameter[0]].ValueType,
-                	$parameter[1]
-            	)
-        	}
-        	else {
-	            Write-Warning (Get-VstsLocString -Key Parameter0NotValid -ArgumentList $parameter[0])
-	        }
+			$project.Parameters[$parameter[0]].Set(
+				$project.Parameters[$parameter[0]].ValueType,
+				$parameter[1]
+			)
+			}
+			else {
+			    Write-Warning (Get-VstsLocString -Key Parameter0NotValid -ArgumentList $parameter[0])
+			}
+		
+		}
 	    }
     }
     $project.Alter()
