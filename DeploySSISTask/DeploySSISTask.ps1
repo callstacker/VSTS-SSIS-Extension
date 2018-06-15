@@ -79,7 +79,7 @@ try {
         	$parameter = $parameterLine -split '='
 		
 		# Test that we've extracted a non-empty parameter name
-		if ($parameter -ne $null){
+		if (!([string]::IsNullOrWhiteSpace($parameter[0]))) {
 			
 			# Set the parameter to the specified value if it exists in project
 			if ($project.Parameters.Contains($parameter[0])) {
